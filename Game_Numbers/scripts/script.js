@@ -1,6 +1,6 @@
 let wrapper = document.createElement("div");
 wrapper.classList.add("wrapper");
-document.body.preppend(wrapper);
+document.body.prepend(wrapper);
 
 let nElem = 3;
 
