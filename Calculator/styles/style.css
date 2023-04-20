@@ -27,22 +27,26 @@ body{
     width: 90%;
     height: 20%;
 
-    /* margin: 5% auto; */
-
     background-color: #dbecef;
     border: 1px solid black;
+
+    font-size: 2rem;
+    text-align: right;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-.memConteiner{
+.btnsLine{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     height: 10%;
-    /* margin-top: 10%; */
-    /* margin-bottom: auto; */
-
-    /* background-color: #e0dfdf; */
 }
 
 .memBtn{
