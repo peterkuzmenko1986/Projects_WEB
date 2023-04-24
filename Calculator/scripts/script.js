@@ -25,11 +25,11 @@ memPls.classList.add("memBtn");
 memPls.innerText = "+ P";
 memConteiner.append(memPls);
 
-let resetBtn = document.createElement("button");
-resetBtn.classList.add("memBtn");
-resetBtn.innerText = "RESET";
-resetBtn.classList.add("resetBtn");
-memConteiner.append(resetBtn);
+let btnReset = document.createElement("button");
+btnReset.classList.add("memBtn");
+btnReset.innerText = "RESET";
+btnReset.classList.add("btnReset");
+memConteiner.append(btnReset);
 
 
 let line789 = document.createElement("div");
@@ -53,7 +53,7 @@ line789.append(btn9);
 
 let btnDivide = document.createElement("button");
 btnDivide.classList.add("memBtn");
-btnDivide.classList.add("resetBtn");
+btnDivide.classList.add("btnReset");
 btnDivide.innerText = "/";
 line789.append(btnDivide);
 
@@ -80,7 +80,7 @@ line456.append(btn6);
 
 let btnMult = document.createElement("button");
 btnMult.classList.add("memBtn");
-btnMult.classList.add("resetBtn");
+btnMult.classList.add("btnReset");
 btnMult.innerText = "*";
 line456.append(btnMult);
 
@@ -106,7 +106,7 @@ line123.append(btn3);
 
 let btnMin = document.createElement("button");
 btnMin.classList.add("memBtn");
-btnMin.classList.add("resetBtn");
+btnMin.classList.add("btnReset");
 btnMin.innerText = "-";
 line123.append(btnMin);
 
@@ -133,20 +133,23 @@ line0.append(btnPlus);
 
 let btnIs = document.createElement("button");
 btnIs.classList.add("memBtn");
-btnIs.classList.add("resetBtn");
+btnIs.classList.add("btnReset");
 btnIs.innerText = "=";
 line0.append(btnIs);
 
 
-//select Buff1 --- true
-//select Buff2 --- false
-let buffSelect = true;
+let	param1 = 0, param2 = 0;
+let p1Point = false;
+let p2Point = false;
 
-let buff1 = 0, buff2 = 0, operation;
-let memBuff, memBuffPls, memBuffMin;
+let	operation = false;
+
+
+// let mem, memPls, memMin;
 
 let viewerBuff = 0;
 viewer.innerText = viewerBuff;
+
 
 
 calcBody.addEventListener("click", funcBtnClk, false);
@@ -154,55 +157,87 @@ calcBody.addEventListener("click", funcBtnClk, false);
 function funcIs(){
 	switch(operation){
 	case "mult":
-		viewerBuff = buff1 * buff2;
+		viewerBuff = param1 * param2;
 		break;
 	case "divide":
-		viewerBuff = buff1 / buff2;
+		viewerBuff = param1 / param2;
 		break;
 	case "plus":
-		viewerBuff = buff1 + buff2;
+		viewerBuff = param1 + param2;
 		break;
 	case "minus":
-		viewerBuff = buff1 - buff2;
+		viewerBuff = param1 - param2;
 	}
+
+	viewerBuff = viewerBuff.toFixed(10);
+	viewerBuff = parseFloat(viewerBuff);
+	operation = true;
+
+	param1 = viewerBuff;
+	p2Point = false;
+	param2 = 0;
 }
 
 function addToBuff(param){
-	if(buffSelect == true)
+	if(operation == false)
 		{
-			buff1 += param.toString();
-			buff1 = parseFloat(buff1);
-			viewerBuff = buff1;
+			if((p1Point == false) && (param == ".")){
+				param1 += param.toString();
+				p1Point = true;
+			} else if((p1Point == true) && (param == ".")){
+
+			} else{
+				param1 += param.toString();
+				if(param != "0") param1 = +param1;
+			}
+			viewerBuff = param1;
 		}
 	else
 		{
-			buff2 += param.toString();
-			buff2 = parseFloat(buff2);
-			viewerBuff = buff2;
+			if((p2Point == false) && (param == ".")){
+				param2 += param.toString();
+				p2Point = true;
+			} else if((p2Point == true) && (param == ".")){
+
+			} else{
+				param2 += param.toString();
+				if(param != "0") param2 = +param2;
+			}
+			viewerBuff = param2;
 		}
+}
+
+function funcReset(){
+	operation = false;
+	param1 = 0;
+	param2 = 0;
+	viewerBuff = 0;
+
+	p1Point = false;
+	p2Point = false;
 }
 
 function funcBtnClk(e){
 	switch(e.target){
+	case btnReset:
+		funcReset();
+		break;
+
 	case btnIs:
 		funcIs();
 		break;
 
 	case btnMult:
 		operation = "mult";
-		buffSelect = false;
 		break;
 	case btnDivide:
 		operation = "divide";
-		buffSelect = false;
 		break;
 	case btnPlus:
 		operation = "plus";
-		buffSelect = false;
 		break;
 	case btnMin:
 		operation = "minus";
-		buffSelect = false;
 		break;
 
 
@@ -212,12 +247,12 @@ function funcBtnClk(e){
 		break;
 	case memPls:
 		break;
-	case resetBtn:
+	case btnReset:
 		break;
 
 
 	case btnPoint:
-		if(operation !="complite") 
+		addToBuff(".");
 		break;
 
 	case btn0:
