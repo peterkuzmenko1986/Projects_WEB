@@ -10,20 +10,20 @@ let memConteiner = document.createElement("div");
 memConteiner.classList.add("btnsLine");
 calcBody.append(memConteiner);
 
-let memBtn = document.createElement("button");
-memBtn.classList.add("memBtn");
-memBtn.innerText = "MEM";
-memConteiner.append(memBtn);
+let memRead = document.createElement("button");
+memRead.classList.add("memBtn");
+memRead.innerText = "MR";
+memConteiner.append(memRead);
 
-let memMin = document.createElement("button");
-memMin.classList.add("memBtn");
-memMin.innerText = "- P";
-memConteiner.append(memMin);
+let memWrite = document.createElement("button");
+memWrite.classList.add("memBtn");
+memWrite.innerText = "MW";
+memConteiner.append(memWrite);
 
-let memPls = document.createElement("button");
-memPls.classList.add("memBtn");
-memPls.innerText = "+ P";
-memConteiner.append(memPls);
+let memClear = document.createElement("button");
+memClear.classList.add("memBtn");
+memClear.innerText = "MC";
+memConteiner.append(memClear);
 
 let btnReset = document.createElement("button");
 btnReset.classList.add("memBtn");
@@ -145,7 +145,7 @@ let p2Point = false;
 let	operation = false;
 
 
-// let mem, memPls, memMin;
+let memValue = 0;
 
 let viewerBuff = 0;
 viewer.innerText = viewerBuff;
@@ -171,7 +171,6 @@ function funcIs(){
 
 	viewerBuff = viewerBuff.toFixed(10);
 	viewerBuff = parseFloat(viewerBuff);
-	operation = true;
 
 	param1 = viewerBuff;
 	p2Point = false;
@@ -217,12 +216,19 @@ function funcReset(){
 	p2Point = false;
 }
 
+function funcMemRead(){
+	if(operation == false) {
+		param1 = memValue;
+		viewerBuff = param1;
+	}
+	else {
+		param2 = memValue;
+		viewerBuff = param2;
+	}
+}
+
 function funcBtnClk(e){
 	switch(e.target){
-	case btnReset:
-		funcReset();
-		break;
-
 	case btnIs:
 		funcIs();
 		break;
@@ -241,13 +247,17 @@ function funcBtnClk(e){
 		break;
 
 
-	case memBtn:
+	case memRead:
+		funcMemRead();
 		break;
-	case memMin:
+	case memWrite:
+		memValue = viewerBuff;
 		break;
-	case memPls:
+	case memClear:
+		memValue = 0;
 		break;
 	case btnReset:
+		funcReset();
 		break;
 
 
