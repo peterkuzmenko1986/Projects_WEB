@@ -1,0 +1,33 @@
+.btn{
+	width: 10rem;
+	height: 5rem;
+
+	background-color: red;
+
+	margin: 1rem auto;
+}
+
+.menu{
+	position: fixed;
+
+	width: 3rem;
+	height: 5rem;
+
+	background-color: grey;
+
+	display: none;
+	flex-direction: column;
+}
+
+.menuElem{
+	display: block;
+	flex-wrap: wrap;
+	flex-shrink: 1;
+	height: 2rem;
+
+	border: 1px solid black;
+}
+
+.menuElem:hover{
+	background-color: green;
+}
