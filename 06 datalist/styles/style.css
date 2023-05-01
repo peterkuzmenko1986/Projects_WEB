@@ -1,0 +1,11 @@
+input{
+    margin: 1rem auto;
+    display: block;
+
+    width: 20rem;
+    height: 5rem;
+    font-size: 2rem;
+
+    padding: 1rem;
+    box-sizing: border-box;
+}
