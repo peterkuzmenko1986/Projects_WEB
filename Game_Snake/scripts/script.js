@@ -31,35 +31,75 @@ for(let i=0; i<n; i++){
 let calcWidth = width/n - 2*padding + "rem";
 document.styleSheets[1].insertRule(`.pixel{width:${calcWidth}; height: ${calcWidth}}`);
 
-setInterval(funcInterval, 1000);
+setInterval(funcInterval, 500);
+
+// 1 - Right
+// 2 - Up
+// 3 - Left
+// 4 - Down
+let prevDirect = 2;
+
 
 let isActive = false;
 let isPosChanged = false;
 
 let posX = Math.floor( (n-1)/2);
 let posY = n-1;
+
+let newPosX = posX;
+let newPosY = posY;
+
 function funcInterval(){
     isPosChanged = false;
     isActive = !isActive;
-    elem[posY][posX].classList.toggle("grey");
+    
+    elem[posY][posX].classList.remove("grey");
+
+    
+    if(isActive){
+        switch(prevDirect){
+            case 1:
+                if(posX<(n-1)) newPosX++;
+                break;
+                case 2:
+                if(posY>0) newPosY--;
+            break;
+            case 3:
+                if(posX>0) newPosX--;
+            break;
+            case 4:
+                if(posY<(n-1)) newPosY++;
+                break;
+        }
+    }
+      
+    
+    posX = newPosX;
+    posY = newPosY;
+    
+    elem[posY][posX].classList.add("grey");
 }
 
 document.addEventListener("keydown", funcKey, false);
 
 function funcKey(e){
-    if(!isActive && !isPosChanged){
+    if(isActive && !isPosChanged){
         switch(e.code){
             case "ArrowUp":
-                if(posY>0) posY--;
+                if(posY>0) newPosY--;
+                prevDirect = 2;
             break;
             case "ArrowDown":
-                if(posY<(n-1)) posY++;
+                if(posY<(n-1)) newPosY++;
+                prevDirect = 4;
             break;
             case "ArrowLeft":
-                if(posX>0) posX--;
+                if(posX>0) newPosX--;
+                prevDirect = 3;
             break;
             case "ArrowRight":
-                if(posX<(n-1)) posX++;
+                if(posX<(n-1)) newPosX++;
+                prevDirect = 1;
             break;
         }
         isPosChanged = true;
