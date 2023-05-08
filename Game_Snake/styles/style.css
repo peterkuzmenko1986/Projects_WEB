@@ -1,0 +1,31 @@
+body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+    background-color: grey;
+    border: 1px solid black;
+
+    box-sizing: border-box;
+}
+
+.line{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.pixel{
+    background-color: green;
+    border: 1px solid black;
+
+    box-sizing: border-box;
+}
