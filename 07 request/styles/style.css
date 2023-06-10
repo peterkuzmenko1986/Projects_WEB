@@ -1,0 +1,29 @@
+/*@import url("./style_2.css");*/
+
+@keyframes ani{
+	from{
+		/*left:1px;
+		top:1px;*/
+		transform:translate(1px,1px);
+	}
+
+	to{
+		/*left: 100px;
+		top:100px;*/
+		transform: translate(100px,100px);
+		border-radius: 15px;
+	}
+}
+
+
+div{
+	display: block;
+	position: absolute;
+	width: 100px;
+	height: 50px;
+	background-color: grey;
+
+
+	animation: ani 1s linear forwards;
+}
+

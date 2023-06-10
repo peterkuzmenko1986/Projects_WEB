@@ -1,0 +1,27 @@
+table{
+    border-collapse: collapse;
+    margin: 1rem auto;
+}
+
+thead{
+    background-color: #c4e2d4;
+    
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+thead td{
+    text-align: center;
+}
+
+td{
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    
+    border: 1px solid black;
+}
+
+tbody td{
+    text-indent: 1rem;
+    
+}
